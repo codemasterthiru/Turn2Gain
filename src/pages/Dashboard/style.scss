@@ -1,0 +1,55 @@
+.container {
+  margin: 10px;
+  box-sizing: border-box;
+  width: calc(100% - 20px);
+
+  .info-container {}
+
+  .fund-container {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-bottom: 10px;
+  }
+
+  .fund {
+    padding: 8px;
+    // border: 1px solid grey;
+    margin: 5px 10px;
+    border-radius: 3px;
+    min-width: 100px;
+    background: #fff;
+    box-shadow: 0px 2px 3px #888888;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .fund-content {
+    color: #f1824c;
+    font-size: 16px;
+  }
+
+  .label {
+    color: #182145;
+    font-size: 8px;
+    text-align: left;
+  }
+
+  .content {
+    color: #f1824c;
+    font-size: 13px;
+  }
+
+  .last-three-months-return-container {
+    width: calc(50% - 5px);
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .ytd-return-chart {
+    width: calc(50% - 5px);
+    display: inline-block;
+  }
+}
