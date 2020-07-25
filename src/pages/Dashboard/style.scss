@@ -53,3 +53,13 @@
     display: inline-block;
   }
 }
+
+@media only screen and (max-width: 579px) {
+  .container {
+
+    .last-three-months-return-container,
+    .ytd-return-chart {
+      width: 100%;
+    }
+  }
+}
