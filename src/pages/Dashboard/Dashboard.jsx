@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
     this.id = pathArray[pathArray.length - 1];
     this.api(this.id);
   }
-  unsafe_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { location } = nextProps;
     const { pathname } = location;
     const findId = pathname.split("/");
