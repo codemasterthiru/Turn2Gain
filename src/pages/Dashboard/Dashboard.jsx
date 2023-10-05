@@ -9,6 +9,7 @@ import {
   Last3MonthsNavBarChart
 } from "../../component";
 import { dateToString } from "../../utils";
+import { NavTable } from "../../component/NavTable";
 
 class Dashboard extends React.Component {
   state = {
@@ -41,7 +42,18 @@ class Dashboard extends React.Component {
   render() {
     const { fund = {} } = this.state;
     const { meta = {}, data = [] } = fund;
-    const prevCurrData = { today: data[ 0 ], prevDay1: data[ 1 ], prevDay2: data[ 2 ], prevDay3: data[ 3 ], prevDay4: data[ 4 ], prevDay5: data[ 5 ]};
+    const prevCurrData = {
+      today: data[0], prevDay1: data[1], prevDay2: data[2], prevDay3: data[3],
+      prevDay4: data[4], prevDay5: data[5], prevDay6: data[6], prevDay7: data[7]
+    };
+    const dataModal = (d) => {
+      return d?.map(i => {
+        return {
+          ...i,
+          date: dateToString(i.date, "mmddyyyy")
+        }
+      })
+    };
 
     return (
       <div className={"container"}>
@@ -80,7 +92,8 @@ class Dashboard extends React.Component {
         <Last3MonthsNavBarChart data={data} fund={meta.scheme_name} />
         <YTDReturn data={data} fund={meta.scheme_name} />
         <YtdNavBarChart data={data} fund={meta.scheme_name} />
-        <NavLineChart data={data} fund={meta.scheme_name} />
+        <NavLineChart data={ data } fund={ meta.scheme_name } />
+        <NavTable data={ dataModal(data) } fund={ meta.scheme_name } />
       </div>
     );
   }

@@ -42,3 +42,18 @@
   border-bottom: 1px solid grey;
   padding-bottom: 10px;
 }
+
+.nav-table-container {
+  .flex.justify-content-between {
+    text-align: left;
+
+    .p-button {
+      margin-right: 10px;
+      height: 48px;
+    }
+  }
+
+  .p-paginator-bottom {
+    justify-content: flex-end;
+  }
+}

@@ -6,10 +6,21 @@ class Last3MonthsNavBarChart extends React.Component {
   threeMonthsData = [];
   render() {
     const { data, fund } = this.props;
-    if (data.length) {
-      this.threeMonthsData = data.slice(1, 66);
-      this.threeMonthsData.reverse();
-    }
+
+    this.threeMonthsData = data?.filter((i, idx) => {
+      if (i?.date) {
+        const split = i.date.split("-");
+        const format = split[1] + "/" + split[0] + "/" + split[2];
+        let dataDate = new Date(format), sysDate = new Date();
+        if ((dataDate.getFullYear() === sysDate.getFullYear()) &&
+            ((dataDate.getMonth() === sysDate.getMonth()) ||
+            (dataDate.getMonth() === sysDate?.getMonth() - 1) ||
+            (dataDate.getMonth() === sysDate?.getMonth() - 2))) {
+          return i;
+        }
+      }
+    });
+
     if (data.length) data.reverse();
     const barChartData = {
       labels: this.threeMonthsData.map((i) => {
@@ -21,12 +32,7 @@ class Last3MonthsNavBarChart extends React.Component {
         backgroundColor: '#CE93D8',
         borderWidth: 2,
         data: this.threeMonthsData.map((i) => {
-          let calc = 0;
-          if (this.prevNav) {
-            calc = ((i.nav - this.prevNav) / this.prevNav) * 100;
-          }
-          this.prevNav = i.nav;
-          return calc.toFixed(2);
+          return Number(i?.nav).toFixed(2);
         })
       }]
     }
@@ -41,7 +47,7 @@ class Last3MonthsNavBarChart extends React.Component {
             legend: {
               display: true, position: 'top'
             }
-          }}
+          } }
         />
       </div>
     )

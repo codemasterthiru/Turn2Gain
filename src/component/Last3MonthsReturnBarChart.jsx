@@ -6,9 +6,20 @@ class Last3MonthsReturnBarChart extends React.Component {
   prevNav = "";
   render() {
     const { data, fund } = this.props;
-    if (data.length) {
-      this.threeMonthsData = data.slice(1, 66);
-      this.threeMonthsData.reverse();
+    if (this.props.data) {
+      this.threeMonthsData = data?.filter((i, idx) => {
+        if (i?.date) {
+          const split = i.date.split("-");
+          const format = split[1] + "/" + split[0] + "/" + split[2];
+          let dataDate = new Date(format), sysDate = new Date();
+          if ((dataDate.getFullYear() === sysDate.getFullYear()) &&
+              ((dataDate.getMonth() === sysDate.getMonth()) ||
+              (dataDate.getMonth() === sysDate?.getMonth() - 1) ||
+              (dataDate.getMonth() === sysDate?.getMonth() - 2))) {
+            return i;
+          }
+        }
+      });
     }
     const barChartData = {
       labels: this.threeMonthsData.map(i => i.date),
