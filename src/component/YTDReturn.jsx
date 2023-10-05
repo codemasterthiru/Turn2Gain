@@ -1,22 +1,9 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
+import { dateToString } from "../utils";
 
 class YTDReturn extends React.Component {
   ytdReturn = [];
-  month = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ];
 
   prevNav = "";
 
@@ -37,14 +24,7 @@ class YTDReturn extends React.Component {
     }
 
     var lineChartData = {
-      labels: this.ytdReturn.map(i => {
-        const split = i.date.split("-");
-        const format = split[1] + "/" + split[0] + "/" + split[2];
-        const date = new Date(format);
-        const getMonth = this.month[date.getMonth()];
-        const getYear = date.getFullYear();
-        return getMonth + " " + getYear;
-      }),
+      labels: this.ytdReturn.map(i => dateToString(i?.date, "mmmyyyy")),
       datasets: [
         {
           label: fund,

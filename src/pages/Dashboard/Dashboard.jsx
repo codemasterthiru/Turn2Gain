@@ -8,6 +8,7 @@ import {
   YTDReturn,
   Last3MonthsNavBarChart
 } from "../../component";
+import { dateToString } from "../../utils";
 
 class Dashboard extends React.Component {
   state = {
@@ -40,7 +41,7 @@ class Dashboard extends React.Component {
   render() {
     const { fund = {} } = this.state;
     const { meta = {}, data = [] } = fund;
-    const prevCurrData = { prev: data[ 0 ], to: data[ 1 ] };
+    const prevCurrData = { today: data[ 0 ], prevDay1: data[ 1 ], prevDay2: data[ 2 ], prevDay3: data[ 3 ], prevDay4: data[ 4 ], prevDay5: data[ 5 ]};
 
     return (
       <div className={"container"}>
@@ -67,7 +68,7 @@ class Dashboard extends React.Component {
           {Object.keys(prevCurrData).map((i, idx) => {
             return (
               <div className={ "fund" } key={ idx }>
-                <div className={"label"}>{i + "Day Nav"}</div>
+                <div className={"label"}>{dateToString(prevCurrData[i]?.date) + " Nav"}</div>
                 <div className={"fund-content"} >
                   {prevCurrData[i]?.nav}
                 </div>
