@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 class NavLineChart extends React.Component {
   render() {
     const { data, fund } = this.props;
-    if (data.length) data.reverse();
+    // if (data.length) data.reverse();
     var lineChartData = {
       labels: data.map((i) => i.date),
       datasets: [{
@@ -17,6 +17,7 @@ class NavLineChart extends React.Component {
     }
     return (
       <div className="nav-line-chart box-container">
+        <div className="header-text">Performance of NAV</div>
         <Line data={lineChartData}
           options={{
             title: {

@@ -23,7 +23,7 @@ class FundSearch extends React.Component {
   }
   onClick = (i) => {
     this.setState({ isClicked: true });
-    window.location.href = "#/dashboard/" + i.schemeCode;
+    window.location.href = "/dashboard?id=" + i.schemeCode;
   }
   render() {
     const { searchData, isClicked } = this.state;

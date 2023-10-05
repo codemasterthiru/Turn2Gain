@@ -5,9 +5,18 @@ class YtdNavBarChart extends React.Component {
   oneYearData = [];
   render() {
     const { data, fund } = this.props;
-    if (data.length) {
-      this.oneYearData = data.slice(1, 261);
-      this.oneYearData.reverse();
+    if (this.props.data) {
+      this.oneYearData = data?.filter((i, idx) => {
+        if (i?.date) {
+          const split = i.date.split("-");
+          const format = split[1] + "/" + split[0] + "/" + split[2];
+          let dataDate = new Date(format), sysDate = new Date();
+          if (dataDate.getFullYear() === sysDate.getFullYear()) {
+            return i;
+          }
+        }
+      });
+      // this.ytdReturn.reverse();
     }
     const barChartData = {
       labels: this.oneYearData.map(i => i.date),
@@ -23,6 +32,7 @@ class YtdNavBarChart extends React.Component {
     };
     return (
       <div className="ytd-nav-bar-chart box-container">
+        <div className="header-text">Year To Date NAV</div>
         <Bar
           data={barChartData}
           options={{

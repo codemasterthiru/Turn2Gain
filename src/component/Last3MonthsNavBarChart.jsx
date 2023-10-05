@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import Chart from 'chart.js/auto';
 
 class Last3MonthsNavBarChart extends React.Component {
   threeMonthsData = [];
@@ -31,13 +32,14 @@ class Last3MonthsNavBarChart extends React.Component {
     }
     return (
       <div className="nav-line-chart box-container">
+        <div className="header-text">Last 3 Months of Nav</div>
         <Bar data={barChartData}
           options={{
             title: {
               display: true, text: 'Last 3 Months of Nav', fontSize: 16
             },
             legend: {
-              display: true, position: 'bottom'
+              display: true, position: 'top'
             }
           }}
         />

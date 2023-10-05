@@ -31,6 +31,7 @@ class Last3MonthsReturnBarChart extends React.Component {
     };
     return (
       <div className="last-three-months-return-container box-container">
+        <div className="header-text">Last 3 Months Returns</div>
         <Bar
           data={barChartData}
           options={{

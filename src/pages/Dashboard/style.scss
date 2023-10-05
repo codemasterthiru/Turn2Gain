@@ -33,8 +33,9 @@
 
   .label {
     color: #182145;
-    font-size: 8px;
+    font-size: 10px;
     text-align: left;
+    text-transform: capitalize;
   }
 
   .content {
@@ -43,14 +44,14 @@
   }
 
   .last-three-months-return-container {
-    width: calc(50% - 5px);
-    display: inline-block;
+    // width: calc(50% - 5px);
+    // display: inline-block;
     margin-right: 5px;
   }
 
   .ytd-return-chart {
-    width: calc(50% - 5px);
-    display: inline-block;
+    // width: calc(50% - 5px);
+    // display: inline-block;
   }
 }
 
