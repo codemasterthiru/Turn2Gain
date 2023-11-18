@@ -10,8 +10,8 @@ function App() {
     <div className={"App " + commonClass}>
       <BrowserRouter basename="/">
         <Routes>
-          <Route exact path="/" element={<SignIn />} />
-          <Route exact path="/home" element={<Home />} />
+          {/* <Route exact path="/" element={<SignIn />} /> */}
+          <Route exact path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter >
