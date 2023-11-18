@@ -39,7 +39,7 @@
   font-size: 18px;
   color: black;
   text-align: left;
-  border-bottom: 1px solid grey;
+  // border-bottom: 1px solid grey;
   padding-bottom: 10px;
 }
 
@@ -55,5 +55,36 @@
 
   .p-paginator-bottom {
     justify-content: flex-end;
+  }
+}
+
+.header-section {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid grey;
+
+  .header-text {
+    width: 100%;
+    line-height: 2;
+    overflow: hidden;
+    height: 45px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .ytd-dd {
+    height: 40px;
+    margin-bottom: 10px;
+    background: white;
+    border: 1px solid black;
+    margin-right: 5px;
+
+    .p-dropdown-label {
+      padding: 7px;
+      color: black;
+    }
+
+    .p-dropdown-trigger {
+      color: black;
+    }
   }
 }

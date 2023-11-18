@@ -6,7 +6,9 @@ import {
   YtdNavBarChart,
   Last3MonthsReturnBarChart,
   YTDReturn,
-  Last3MonthsNavBarChart
+  Last3MonthsNavBarChart,
+  NewYTDReturn,
+  NewYTDNAV
 } from "../../component";
 import { dateToString } from "../../utils";
 import { NavTable } from "../../component/NavTable";
@@ -88,11 +90,12 @@ class Dashboard extends React.Component {
             );
           })}
         </div>
-        <Last3MonthsReturnBarChart data={data} fund={meta.scheme_name} />
-        <Last3MonthsNavBarChart data={data} fund={meta.scheme_name} />
-        <YTDReturn data={data} fund={meta.scheme_name} />
-        <YtdNavBarChart data={data} fund={meta.scheme_name} />
-        <NavLineChart data={ data } fund={ meta.scheme_name } />
+        {/* <Last3MonthsReturnBarChart data={data} fund={meta.scheme_name} /> */}
+        {/* <Last3MonthsNavBarChart data={data} fund={meta.scheme_name} /> */}
+        <NewYTDReturn data={ data } fund={ meta.scheme_name } />
+        <NewYTDNAV data={data} fund={meta.scheme_name} />
+        {/* <YtdNavBarChart data={data} fund={meta.scheme_name} /> */}
+        {/* <NavLineChart data={ data } fund={ meta.scheme_name } /> */}
         <NavTable data={ dataModal(data) } fund={ meta.scheme_name } />
       </div>
     );

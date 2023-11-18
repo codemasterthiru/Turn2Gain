@@ -16,13 +16,19 @@ import { Dropdown } from 'primereact/dropdown';
 
 export const NavTable = (props) => {
     const { data } = props;
+    const [ tableData, setTableData ] = useState([]);
     const [filters, setFilters] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [globalFilterValue, setGlobalFilterValue] = useState('');
+    const [ globalFilterValue, setGlobalFilterValue ] = useState('');
+    let prevNav;
 
     useEffect(() => {
         initFilters();
     }, []);
+
+    useEffect(() => {
+        setTableData(dataModal(data));
+    }, [data]);
 
     const clearFilter = () => {
         initFilters();
@@ -85,27 +91,39 @@ export const NavTable = (props) => {
             ];
             return (
                 <React.Fragment>
-                    <span className="mx-1" style={{ color: 'var(--text-color)', userSelect: 'none' }}>Items per page: </span>
-                    <Dropdown className="primary-dropdown" value={options.value} options={dropdownOptions} onChange={options?.onChange} />
+                    <span className="mx-1" style={ { color: 'var(--text-color)', userSelect: 'none' } }>Items per page: </span>
+                    <Dropdown className="primary-dropdown" value={ options.value } options={ dropdownOptions } onChange={ options?.onChange } />
                 </React.Fragment>
             );
         },
         'CurrentPageReport': (options) => {
             return (
-                <span style={{ color: 'var(--text-color)', userSelect: 'none', width: '120px', textAlign: 'center' }}>
-                    {options.first} - {options.last} of {options.totalRecords}
+                <span style={ { color: 'var(--text-color)', userSelect: 'none', width: '120px', textAlign: 'center' } }>
+                    { options.first } - { options.last } of { options.totalRecords }
                 </span>
             )
         }
-    }
+    };
+
+    const dataModal = (d) => {
+        return d?.map(i => {
+            let calc = 0;
+            if (prevNav) {
+                calc = ((i.nav - prevNav) / prevNav) * 100;
+            }
+            prevNav = i.nav;
+            return { ...i, "return": calc.toFixed(2) + "%" };
+        });
+    };
 
     return (
         <div className="nav-table-container">
-            <DataTable value={data} paginator showGridlines paginatorTemplate={paginatorTemplate} rows={10} loading={loading} dataKey="id"
+            <DataTable value={tableData} paginator showGridlines paginatorTemplate={paginatorTemplate} rows={10} loading={loading} dataKey="id"
                     filters={filters} globalFilterFields={['name', 'country.name', 'representative.name', 'balance', 'status']} header={header}
                     emptyMessage="No records found.">
                 <Column header="Date" field="date" dataType="date" style={{ minWidth: '10rem' }} filter filterElement={dateFilterTemplate} sortable />
-                <Column header="NAV" field="nav" dataType="numeric" style={{ minWidth: '10rem' }} filter filterElement={balanceFilterTemplate} sortable />
+                <Column header="NAV" field="nav" dataType="numeric" style={ { minWidth: '10rem' } } filter filterElement={ balanceFilterTemplate } sortable />
+                <Column header="Return" field="return" dataType="numeric" style={{ minWidth: '10rem' }} filter filterElement={balanceFilterTemplate} sortable />
             </DataTable>
         </div>
     );
