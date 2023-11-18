@@ -108,7 +108,7 @@ const NewYTDNAV = (props) => {
             tooltip: {
               callbacks: {
                 label: function (context) {
-                  return "NAV: " + context?.formattedValue + "%";
+                  return "NAV: " + context?.formattedValue;
                 }
               }
             }
@@ -126,7 +126,7 @@ const NewYTDNAV = (props) => {
             tooltip: {
               callbacks: {
                 label: function (context) {
-                  return "NAV: " + context?.formattedValue + "%";
+                  return "NAV: " + context?.formattedValue;
                 }
               }
             }
